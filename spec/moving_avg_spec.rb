@@ -20,4 +20,13 @@ RSpec.describe MovingAvg do
       expect(actual).to eq expected
     end
   end
+
+  describe "exponentially_weighted_moving_average" do
+    it do
+      data = [100, 200, 200, 500]
+      actual = MovingAvg::Base.ewma(data)
+      expected = 298.4
+      expect(actual).to eq expected
+    end
+  end
 end
