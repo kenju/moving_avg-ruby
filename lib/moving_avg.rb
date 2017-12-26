@@ -22,16 +22,26 @@ module MovingAvg
       # EWMA - Exponentially Weighted Moving Average
       def exponentially_weighted_moving_average(u)
         factor = 2.0 / (u.size + 1) # a.k.a. smoothing factor
-
-        weighted = u.inject([]) { |acc, x|
-          acc << factor * x + (1 - factor) * (acc.last || x)
-        }
-
+        weighted = exponentially_weighting(u, factor)
         weighted.last
       end
       alias_method :ewma, :exponentially_weighted_moving_average
 
+      # MMA - Modified Moving Average
+      def modified_moving_average(u)
+        factor = 1 / u.size
+        weighted = exponentially_weighting(u, factor)
+        weighted.last
+      end
+      alias_method :mma, :modified_moving_average
+
       private
+
+      def exponentially_weighting(u, factor)
+        u.inject([]) { |acc, x|
+          acc << factor * x + (1 - factor) * (acc.last || x)
+        }
+      end
 
       def sum_vector(u)
         u.reduce(0) { |x, y| x + y }
