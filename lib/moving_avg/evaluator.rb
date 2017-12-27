@@ -1,9 +1,14 @@
 module MovingAvg
   class Evaluator
     class << self
-      def error(training_items:, teacher_data:, strategy:)
-        trained = MovingAvg::Base.public_send(strategy, training_items)
-        (trained - teacher_data).abs
+      def error_sum(training_items:, teacher_items:, window_size:, strategy:)
+        errors = self.errors(
+          training_items: training_items,
+          teacher_items: teacher_items,
+          window_size: window_size,
+          strategy: strategy,
+        )
+        errors.reduce(0) { |x, y| x + y }
       end
 
       def errors(training_items:, teacher_items:, window_size:, strategy:)
