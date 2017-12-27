@@ -1,7 +1,5 @@
 require "moving_avg/version"
 
-require "pry"
-
 module MovingAvg
   class Base
     class << self
