@@ -6,8 +6,12 @@ module MovingAvg
       # the first N-1 items should be padded
       # or calculated from inconvinient data
       def build_with_sliding(items:, window_size:, strategy:)
-        # TODO:
-        MovingAvg::Base.public_send(:strategy, )
+        map_with_sliding(
+          items: items,
+          window_size: window_size,
+        ).map { |data|
+          MovingAvg::Base.public_send(strategy, data)
+        }
       end
 
       def map_with_sliding(items:, window_size:)
