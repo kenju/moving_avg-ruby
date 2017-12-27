@@ -8,7 +8,9 @@ module MovingAvg
           window_size: window_size,
           strategy: strategy,
         )
-        errors.reduce(0) { |x, y| x + y }
+        errors.
+          select { |x| !x.nan? }.
+          reduce(0) { |x, y| x + y }
       end
 
       def errors(training_items:, teacher_items:, window_size:, strategy:)
