@@ -61,7 +61,7 @@ Helper method for calculating the sum of errors.
 
 ```ruby
 training_items = [100, 300, 350, 280, 500]
-teacher_items = [110.0, 200.0, 300.0, 400.0]
+teacher_items = [110.0, 200.0, 300.0]
 %i(sma wma ewma mma).each { |strategy|
   error = MovingAvg::Evaluator.error_sum(
     training_items: training_items,
@@ -70,6 +70,10 @@ teacher_items = [110.0, 200.0, 300.0, 400.0]
     strategy: strategy,
   )
   puts "#{strategy.to_s.ljust(4).rjust(10)} = #{error}"
+  # sma  = 326.6666666666667
+  # wma  = 263.33333333333337
+  # ewma = 375.0
+  # mma  = 306.66666666666674
 }
 ```
 
