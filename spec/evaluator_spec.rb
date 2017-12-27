@@ -1,5 +1,19 @@
 RSpec.describe MovingAvg::Evaluator do
   describe ".error_sum" do
+    it "(print error result just for debugging)" do
+      training_items = [100, 300, 350, 280, 500]
+      teacher_items = [110.0, 200.0, 300.0, 400.0]
+      %i(sma wma ewma mma).each { |strategy|
+        error = MovingAvg::Evaluator.error_sum(
+          training_items: training_items,
+          teacher_items: teacher_items,
+          window_size: 3,
+          strategy: strategy,
+        )
+        puts "#{strategy.to_s.ljust(4).rjust(10)} = #{error}"
+      }
+    end
+
     it do
       training_items = [100, 200, 300, 400, 500] # SMA() gonna be 200.0
       teacher_items = [100.0, 100.0, 100.0, 100.0]

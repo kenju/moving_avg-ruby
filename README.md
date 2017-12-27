@@ -28,7 +28,7 @@ p MovingAvg::Base.ewma(data) #=> 298.4
 p MovingAvg::Base.mma(data)  #=> 232.8125
 ```
 
-## Available Strategies
+## `MovingAvg::Base`
 
 ### Simple Moving Average
 - aliases
@@ -51,6 +51,27 @@ p MovingAvg::Base.mma(data)  #=> 232.8125
 - aliases
   - `MovingAvg::Base.modified_moving_average()`
   - `MovingAvg::Base.mma()`
+
+
+## `MovingAvg::Evaluator`
+
+### `.error_sum`
+
+Helper method for calculating the sum of errors.
+
+```ruby
+training_items = [100, 300, 350, 280, 500]
+teacher_items = [110.0, 200.0, 300.0, 400.0]
+%i(sma wma ewma mma).each { |strategy|
+  error = MovingAvg::Evaluator.error_sum(
+    training_items: training_items,
+    teacher_items: teacher_items,
+    window_size: 3,
+    strategy: strategy,
+  )
+  puts "#{strategy.to_s.ljust(4).rjust(10)} = #{error}"
+}
+```
 
 ## Development
 
