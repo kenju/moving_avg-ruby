@@ -52,6 +52,10 @@ p MovingAvg::Base.mma(data)  #=> 232.8125
   - `MovingAvg::Base.modified_moving_average()`
   - `MovingAvg::Base.mma()`
 
+### Simple Moving Mean
+- aliases
+  - `MovingAvg::Base.simple_moving_mean()`
+  - `MovingAvg::Base.smm()`
 
 ## `MovingAvg::Evaluator`
 

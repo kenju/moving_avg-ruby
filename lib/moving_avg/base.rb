@@ -42,6 +42,16 @@ module MovingAvg
       end
       alias_method :mma, :modified_moving_average
 
+      # SMM - Simple Moving Median
+      #
+      # https://en.wikipedia.org/wiki/Moving_average#Moving_median
+      def simple_moving_median(u)
+        sorted = u.sort
+        len = sorted.length
+        (sorted[(len - 1) / 2] + sorted[len / 2]) / 2
+      end
+      alias_method :smm, :simple_moving_median
+
       private
 
       def exponentially_weighting(u, factor)

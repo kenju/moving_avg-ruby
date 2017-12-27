@@ -48,4 +48,24 @@ RSpec.describe MovingAvg do
       expect(actual).to eq expected
     end
   end
+
+  describe "simple_moving_median" do
+    context "when the items size is even" do
+      it do
+        data = [100, 200, 200, 500]
+        actual = MovingAvg::Base.smm(data)
+        expected = 200
+        expect(actual).to eq expected
+      end
+    end
+
+    context "when the item size is odd" do
+      it do
+        data = [1000, 10, 100, 300, 200, 500, 1000]
+        actual = MovingAvg::Base.smm(data)
+        expected = 300
+        expect(actual).to eq expected
+      end
+    end
+  end
 end
