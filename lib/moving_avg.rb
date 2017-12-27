@@ -21,7 +21,7 @@ module MovingAvg
 
       # EWMA - Exponentially Weighted Moving Average
       def exponentially_weighted_moving_average(u)
-        factor = 2.0 / (u.size + 1) # a.k.a. smoothing factor
+        factor = 2.0 / (u.size + 1) # 2 / (N + 1) a.k.a. smoothing factor
         weighted = exponentially_weighting(u, factor)
         weighted.last
       end
@@ -29,7 +29,7 @@ module MovingAvg
 
       # MMA - Modified Moving Average
       def modified_moving_average(u)
-        factor = 1 / u.size
+        factor = 1.0 / u.size # 1 / N
         weighted = exponentially_weighting(u, factor)
         weighted.last
       end
