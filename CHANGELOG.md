@@ -1,7 +1,5 @@
-## v0.2.3
-- add MovingAvg::Calculator for strategy facade class
-
 ## v0.2.2
+- add MovingAvg::Calculator for strategy facade class
 - add Simple Moving Mean
 
 ## v0.2.1
