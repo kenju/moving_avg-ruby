@@ -22,10 +22,25 @@ Or install it yourself as:
 
 ```ruby
 data = [100, 200, 200, 500]
+
+# Basic Usage
+calculator = MovingAvg::Calculator.new(strategy: :sma)
+p calculator.moving_avg(data)  #=> 250.0
+
+# You can call MovingAvg::Base class methods
 p MovingAvg::Base.sma(data)  #=> 250.0
 p MovingAvg::Base.wma(data)  #=> 190.0
 p MovingAvg::Base.ewma(data) #=> 298.4
 p MovingAvg::Base.mma(data)  #=> 232.8125
+```
+
+## `MovingAvg::Calculator`
+
+```ruby
+data = [100, 200, 200, 500]
+
+calculator = MovingAvg::Calculator.new(strategy: :sma)
+p calculator.moving_avg(data)  #=> 250.0
 ```
 
 ## `MovingAvg::Base`
